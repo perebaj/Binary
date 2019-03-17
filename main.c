@@ -9,38 +9,33 @@
 
 
 //Prototypes:
-int binaryToDecial(int *, int);
+int binaryToDecimal(int size, int vector_Binary[]);
 long long int diggitAccount(long long int value);
 void separeteInt(long long int value, int size, int*);
 
 
 
 int main(){
-    long long int value = 101001100;
+    long long int value = 1001001000;
     int size = diggitAccount(value);
+    printf("size ->%d\n",size);
     int * vector_Binary = malloc (sizeof(int)*size);
     separeteInt(value, size, vector_Binary);
-
-    int decimal = 0;
-    for(int i = 0; i < size; i++){
-        size--;
-        decimal = vector_Binary[i]*pow(2,size) + decimal;
-        
-    }
-    printf("%d\n\n", decimal);
-    
+    int decimal  = binaryToDecimal(size, vector_Binary);
+    printf("decimal =>> %d\n", decimal);
 }
-
 
 /*@Brief    Converte o número binário para decimal
 @param  *vector_Binary  Vetor de Binários
 @param  size    numero de digitos no número binário
 **/
-int binaryToDecimal(int *vector_Binary, int size){
+int binaryToDecimal(int size, int vector_Binary[]){
+    int nSize = size; // nSize = new size
     int decimal = 0;
     for(int i = 0; i < size; i++){
-        decimal = vector_Binary[i]*pow(2,size-1) + decimal;
-        size--;
+        nSize--;
+        decimal = vector_Binary[i]*pow(2,nSize) + decimal;
+        printf("decimal value =>%d\n",decimal);
     }
 
     return decimal;
